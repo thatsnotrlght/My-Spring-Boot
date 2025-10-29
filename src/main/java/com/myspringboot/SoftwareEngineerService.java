@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 public class SoftwareEngineerService {
 
 	private final SoftwareEngineerRepository softwareEngineerRepository;
-
+	// This establishes access to the database
 	public SoftwareEngineerService(SoftwareEngineerRepository softwareEngineerRepository) {
 		this.softwareEngineerRepository = softwareEngineerRepository;
 	}
@@ -19,6 +19,12 @@ public class SoftwareEngineerService {
 	
 	public void insertSoftwareEngineer(SoftwareEngineer softwareEngineer) {
 		softwareEngineerRepository.save(softwareEngineer);
+	}
+
+	public SoftwareEngineer getSoftwareEngineerById(Integer id) {
+		
+		return softwareEngineerRepository.findById(id)
+				.orElseThrow(() -> new IllegalStateException(id + " not found"));
 	}
 	
 }
